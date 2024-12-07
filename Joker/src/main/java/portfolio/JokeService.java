@@ -193,6 +193,26 @@ public class JokeService {
 
     public static void getChristmasJokeList(){
 
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new java.net.URI(CHRISTMAS_JOKE_URL))
+                    .GET().build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            JsonArray jokesArray = JsonParser.parseString(response.body()).getAsJsonArray();
+
+            for (int i = 0; i < jokesArray.size(); i++){
+                JsonObject jokeObject = jokesArray.get(i).getAsJsonObject();
+
+                String type = jokeObject.get("type").getAsString();
+                String setup = jokeObject.get("setup").getAsString();
+                String punchline = jokeObject.get("punchline").getAsString();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 
