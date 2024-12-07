@@ -10,35 +10,74 @@ import java.net.http.HttpResponse;
 
 public class JokeService {
 
-    private static final String JOKE_API_URL = "https://official-joke-api.appspot.com/random_ten";
+    private static final String RANDOM_TEN_JOKE_API_URL = "https://official-joke-api.appspot.com/random_ten";
+    private static final String ANY_JOKE_API_URL = "http://v2.jokeapi.dev/joke/Any?amount=10";
+    private static final String PROGRAMMING_JOKE_URL = "http://v2.jokeapi.dev/joke/Programming?amount=10";
+    private static final String MISC_JOKE_URL = "http://v2.jokeapi.dev/joke/Misc?amount=10";
+    private static final String DARK_JOKE_URL = "http://v2.jokeapi.dev/joke/Dark?amount=10";
+    private static final String PUN_JOKE_URL = "http://v2.jokeapi.dev/joke/Pun?amount=10";
+    private static final String SPOOKY_JOKE_URL = "http://v2.jokeapi.dev/joke/Spooky?amount=10";
+    private static final String CHRISTMAS_JOKE_URL = "http://v2.jokeapi.dev/joke/Chrsistmas?amount=10";
 
-    public void getJokeList() {
+
+
+
+    public void getRandomTenJokeList() {
         try {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new java.net.URI(JOKE_API_URL))
+                    .uri(new java.net.URI(RANDOM_TEN_JOKE_API_URL))
                     .GET()
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            // Parse the JSON array response
             JsonArray jokesArray = JsonParser.parseString(response.body()).getAsJsonArray();
 
-            // Iterate through the array and print each joke
             for (int i = 0; i < jokesArray.size(); i++) {
                 JsonObject jokeObject = jokesArray.get(i).getAsJsonObject();
+                String type = jokeObject.get("type").getAsString();
                 String setup = jokeObject.get("setup").getAsString();
                 String punchline = jokeObject.get("punchline").getAsString();
-                System.out.println("Joke " + (i + 1) + ": " + setup + " " + punchline);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+
+    public static void getAnyJokeList(){
+
+    }
+
+    public static void getProgrammingJokeList(){
+
+    }
+
+    public static void getMiscJokeList(){
+
+    }
+
+    public static void getDarkJokeList(){
+
+    }
+
+    public static void getPunJokeList(){
+
+    }
+
+    public static void getSpookyJokeList(){
+
+    }
+
+    public static void getChristmasJokeList(){
+
+    }
+
+
+
     public static void main(String[] args) {
         JokeService service = new JokeService();
-        service.getJokeList();
+        service.getAnyJokeList();
     }
 }
