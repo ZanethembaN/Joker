@@ -17,7 +17,7 @@ public class JokeService {
     private static final String DARK_JOKE_URL = "http://v2.jokeapi.dev/joke/Dark?amount=10";
     private static final String PUN_JOKE_URL = "http://v2.jokeapi.dev/joke/Pun?amount=10";
     private static final String SPOOKY_JOKE_URL = "http://v2.jokeapi.dev/joke/Spooky?amount=10";
-    private static final String CHRISTMAS_JOKE_URL = "http://v2.jokeapi.dev/joke/Chrsistmas?amount=10";
+    private static final String CHRISTMAS_JOKE_URL = "http://v2.jokeapi.dev/joke/Christmas?amount=10";
 
 
 
@@ -39,6 +39,8 @@ public class JokeService {
                 String type = jokeObject.get("type").getAsString();
                 String setup = jokeObject.get("setup").getAsString();
                 String punchline = jokeObject.get("punchline").getAsString();
+
+                System.out.println(type + " | " + setup + " | " + " | " + punchline);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,7 +48,7 @@ public class JokeService {
     }
 
 
-    public static void getAnyJokeList(){
+    public void getAnyJokeList(){
 
         try{
             HttpClient client = HttpClient.newHttpClient();
@@ -63,13 +65,15 @@ public class JokeService {
                 String type = jokeObject.get("type").getAsString();
                 String setup = jokeObject.get("setup").getAsString();
                 String punchline = jokeObject.get("punchline").getAsString();
+                System.out.println(type + " | " + setup + " | " + " | " + punchline);
+
             }
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    public static void getProgrammingJokeList(){
+    public void getProgrammingJokeList(){
 
         try {
             HttpClient client = HttpClient.newHttpClient();
@@ -86,6 +90,9 @@ public class JokeService {
                 String type = jokeObject.get("type").getAsString();
                 String setup = jokeObject.get("setup").getAsString();
                 String punchline = jokeObject.get("punchline").getAsString();
+
+                System.out.println(type + " | " + setup + " | " + " | " + punchline);
+
             }
 
         }catch (Exception e){
@@ -94,7 +101,7 @@ public class JokeService {
 
     }
 
-    public static void getMiscJokeList(){
+    public void getMiscJokeList(){
 
         try {
             HttpClient client = HttpClient.newHttpClient();
@@ -111,6 +118,9 @@ public class JokeService {
                 String type = jokeObject.get("type").getAsString();
                 String setup = jokeObject.get("setup").getAsString();
                 String punchline = jokeObject.get("punchline").getAsString();
+
+                System.out.println(type + " | " + setup + " | " + " | " + punchline);
+
             }
 
         }catch (Exception e){
@@ -119,7 +129,7 @@ public class JokeService {
 
     }
 
-    public static void getDarkJokeList(){
+    public void getDarkJokeList(){
 
         try {
             HttpClient client = HttpClient.newHttpClient();
@@ -137,13 +147,16 @@ public class JokeService {
                 String setup = jokeObject.get("setup").getAsString();
                 String punchline = jokeObject.get("punchline").getAsString();
 
+                System.out.println(type + " | " + setup + " | " + " | " + punchline);
+
+
             }
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    public static void getPunJokeList(){
+    public void getPunJokeList(){
 
         try {
             HttpClient client = HttpClient.newHttpClient();
@@ -160,13 +173,16 @@ public class JokeService {
                 String type = jokeObject.get("type").getAsString();
                 String setup = jokeObject.get("setup").getAsString();
                 String punchline = jokeObject.get("punchline").getAsString();
+
+                System.out.println(type + " | " + setup + " | " + " | " + punchline);
+
             }
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    public static void getSpookyJokeList(){
+    public void getSpookyJokeList(){
 
         try {
             HttpClient client = HttpClient.newHttpClient();
@@ -183,7 +199,11 @@ public class JokeService {
                 String type = jokeObject.get("type").getAsString();
                 String setup = jokeObject.get("setup").getAsString();
                 String punchline = jokeObject.get("punchline").getAsString();
+
+                System.out.println(type + " | " + setup + " | " + " | " + punchline);
+
             }
+
 
         }catch (Exception e){
             e.printStackTrace();
@@ -191,7 +211,7 @@ public class JokeService {
         }
 
 
-    public static void getChristmasJokeList(){
+    public void getChristmasJokeList(){
 
         try {
             HttpClient client = HttpClient.newHttpClient();
@@ -208,6 +228,9 @@ public class JokeService {
                 String type = jokeObject.get("type").getAsString();
                 String setup = jokeObject.get("setup").getAsString();
                 String punchline = jokeObject.get("punchline").getAsString();
+
+                System.out.println(type + " | " + setup + " | " + " | " + punchline);
+
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -219,6 +242,13 @@ public class JokeService {
 
     public static void main(String[] args) {
         JokeService service = new JokeService();
-        service.getAnyJokeList();
+//        service.getAnyJokeList();
+//        service.getDarkJokeList();
+//        service.getChristmasJokeList();
+//        service.getMiscJokeList();
+//        service.getPunJokeList();
+//        service.getProgrammingJokeList();
+//        service.getSpookyJokeList();
+        service.getRandomTenJokeList();
     }
 }
