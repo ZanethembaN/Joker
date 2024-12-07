@@ -21,14 +21,12 @@ public class JokeService {
 
 
 
-
-    public void getRandomTenJokeList() {
+    private void fetchAndPrintJokes(String apiUrl) {
         try {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new java.net.URI(RANDOM_TEN_JOKE_API_URL))
-                    .GET()
-                    .build();
+                    .uri(new java.net.URI(apiUrl))
+                    .GET().build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
@@ -36,219 +34,69 @@ public class JokeService {
 
             for (int i = 0; i < jokesArray.size(); i++) {
                 JsonObject jokeObject = jokesArray.get(i).getAsJsonObject();
+
                 String type = jokeObject.get("type").getAsString();
                 String setup = jokeObject.get("setup").getAsString();
                 String punchline = jokeObject.get("punchline").getAsString();
 
-                System.out.println(type + " | " + setup + " | " + " | " + punchline);
+                System.out.println(type + " | " + setup + " | " + punchline);
             }
         } catch (Exception e) {
+            System.err.println("Failed to fetch jokes from: " + apiUrl);
             e.printStackTrace();
         }
     }
 
 
-    public void getAnyJokeList(){
 
-        try{
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new java.net.URI(ANY_JOKE_API_URL))
-                    .GET().build();
 
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            JsonArray jokesArray = JsonParser.parseString(response.body()).getAsJsonArray();
-
-            for (int i = 0; i < jokesArray.size(); i++){
-                JsonObject jokeObject = jokesArray.get(i).getAsJsonObject();
-                String type = jokeObject.get("type").getAsString();
-                String setup = jokeObject.get("setup").getAsString();
-                String punchline = jokeObject.get("punchline").getAsString();
-                System.out.println(type + " | " + setup + " | " + " | " + punchline);
-
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    public void getRandomTenJokeList() {
+        fetchAndPrintJokes(RANDOM_TEN_JOKE_API_URL);
     }
 
-    public void getProgrammingJokeList(){
-
-        try {
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new java.net.URI(PROGRAMMING_JOKE_URL))
-                    .GET().build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            JsonArray jokesArray = JsonParser.parseString(response.body()).getAsJsonArray();
-
-            for (int i = 0; i < jokesArray.size(); i++){
-                JsonObject jokeObject = jokesArray.get(i).getAsJsonObject();
-                String type = jokeObject.get("type").getAsString();
-                String setup = jokeObject.get("setup").getAsString();
-                String punchline = jokeObject.get("punchline").getAsString();
-
-                System.out.println(type + " | " + setup + " | " + " | " + punchline);
-
-            }
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+    public void getAnyJokeList() {
+        fetchAndPrintJokes(ANY_JOKE_API_URL);
     }
 
-    public void getMiscJokeList(){
-
-        try {
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new java.net.URI(MISC_JOKE_URL))
-                    .GET().build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            JsonArray jokesArray = JsonParser.parseString(response.body()).getAsJsonArray();
-
-            for (int i = 0; i < jokesArray.size(); i++){
-                JsonObject jokeObject = jokesArray.get(i).getAsJsonObject();
-                String type = jokeObject.get("type").getAsString();
-                String setup = jokeObject.get("setup").getAsString();
-                String punchline = jokeObject.get("punchline").getAsString();
-
-                System.out.println(type + " | " + setup + " | " + " | " + punchline);
-
-            }
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+    public void getProgrammingJokeList() {
+        fetchAndPrintJokes(PROGRAMMING_JOKE_URL);
     }
 
-    public void getDarkJokeList(){
-
-        try {
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new java.net.URI(DARK_JOKE_URL))
-                    .GET().build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            JsonArray jokesArray = JsonParser.parseString(response.body()).getAsJsonArray();
-
-            for (int i = 0; i < jokesArray.size(); i++){
-                JsonObject jokeObject = jokesArray.get(i).getAsJsonObject();
-
-                String type = jokeObject.get("type").getAsString();
-                String setup = jokeObject.get("setup").getAsString();
-                String punchline = jokeObject.get("punchline").getAsString();
-
-                System.out.println(type + " | " + setup + " | " + " | " + punchline);
-
-
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    public void getMiscJokeList() {
+        fetchAndPrintJokes(MISC_JOKE_URL);
     }
 
-    public void getPunJokeList(){
-
-        try {
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new java.net.URI(PUN_JOKE_URL))
-                    .GET().build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            JsonArray jokesArray = JsonParser.parseString(response.body()).getAsJsonArray();
-
-            for (int i = 0; i < jokesArray.size(); i++){
-                JsonObject jokeObject = jokesArray.get(i).getAsJsonObject();
-
-                String type = jokeObject.get("type").getAsString();
-                String setup = jokeObject.get("setup").getAsString();
-                String punchline = jokeObject.get("punchline").getAsString();
-
-                System.out.println(type + " | " + setup + " | " + " | " + punchline);
-
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    public void getDarkJokeList() {
+        fetchAndPrintJokes(DARK_JOKE_URL);
     }
 
-    public void getSpookyJokeList(){
-
-        try {
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new java.net.URI(SPOOKY_JOKE_URL))
-                    .GET().build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            JsonArray jokesArray = JsonParser.parseString(response.body()).getAsJsonArray();
-
-            for (int i = 0; i < jokesArray.size(); i++){
-                JsonObject jokeObject = jokesArray.get(i).getAsJsonObject();
-
-                String type = jokeObject.get("type").getAsString();
-                String setup = jokeObject.get("setup").getAsString();
-                String punchline = jokeObject.get("punchline").getAsString();
-
-                System.out.println(type + " | " + setup + " | " + " | " + punchline);
-
-            }
-
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        }
-
-
-    public void getChristmasJokeList(){
-
-        try {
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new java.net.URI(CHRISTMAS_JOKE_URL))
-                    .GET().build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            JsonArray jokesArray = JsonParser.parseString(response.body()).getAsJsonArray();
-
-            for (int i = 0; i < jokesArray.size(); i++){
-                JsonObject jokeObject = jokesArray.get(i).getAsJsonObject();
-
-                String type = jokeObject.get("type").getAsString();
-                String setup = jokeObject.get("setup").getAsString();
-                String punchline = jokeObject.get("punchline").getAsString();
-
-                System.out.println(type + " | " + setup + " | " + " | " + punchline);
-
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+    public void getPunJokeList() {
+        fetchAndPrintJokes(PUN_JOKE_URL);
     }
 
+    public void getSpookyJokeList() {
+        fetchAndPrintJokes(SPOOKY_JOKE_URL);
+    }
+
+    public void getChristmasJokeList() {
+        fetchAndPrintJokes(CHRISTMAS_JOKE_URL);
+    }
 
 
     public static void main(String[] args) {
         JokeService service = new JokeService();
-//        service.getAnyJokeList();
-//        service.getDarkJokeList();
-//        service.getChristmasJokeList();
-//        service.getMiscJokeList();
-//        service.getPunJokeList();
-//        service.getProgrammingJokeList();
-//        service.getSpookyJokeList();
-        service.getRandomTenJokeList();
+
+        System.out.println("Fetching Programming Jokes...");
+        service.getProgrammingJokeList();
+
+        System.out.println("\nFetching Misc Jokes...");
+        service.getMiscJokeList();
+
+        System.out.println("\nFetching Dark Jokes...");
+        service.getDarkJokeList();
+
+        System.out.println("\nFetching Christmas Jokes...");
+        service.getChristmasJokeList();
     }
+
 }
